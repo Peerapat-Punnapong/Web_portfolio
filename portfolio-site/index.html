@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Putter — Peerapat Punnapong</title>
+<meta name="description" content="Portfolio of Putter (Peerapat Punnapong), an IT student who loves building games, apps, and playing bass.">
+<meta property="og:title" content="Putter — Peerapat Punnapong">
+<meta property="og:description" content="An IT student who loves building games, apps, and playing bass.">
+<meta property="og:image" content="assets/og.jpg">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#90B8DC">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Anuphan:wght@500;700&display=swap" rel="stylesheet">
+
+<link rel="preload" as="image" href="assets/char/bass-1.webp">
+<link rel="stylesheet" href="css/style.css">
+
+<!-- Set classes before first paint to avoid a flash -->
+<script>
+  (function () {
+    var d = document.documentElement;
+    d.classList.add('js');
+    try { if (localStorage.getItem('skipAnim') === '1') d.classList.add('calm'); } catch (e) {}
+    if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('calm');
+  })();
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#work">Skip to content</a>
+
+<!-- ───── Background: day → evening → purple → night ───── -->
+<div class="sky" aria-hidden="true">
+  <div class="sky__layer sky__day"></div>
+  <div class="sky__layer sky__eve"></div>
+  <div class="sky__layer sky__dusk"></div>
+  <div class="sky__layer sky__night"></div>
+  <div class="sky__vignette"></div>
+</div>
+
+<!-- ───── Narrator character (sticky beside the content on desktop) ───── -->
+<div class="narrator" id="narrator" data-state="hero" aria-hidden="true">
+  <div class="narrator__glow"></div>
+  <div class="narrator__shadow"></div>
+  <div class="narrator__body" id="narratorBody">
+    <div class="pose pose--bass is-on" data-pose="bass">
+      <img class="frame is-on" src="assets/char/bass-1.webp" alt="" width="511" height="593">
+      <img class="frame" src="assets/char/bass-2.webp" alt="" width="511" height="593">
+      <img class="frame" src="assets/char/bass-3.webp" alt="" width="511" height="593">
+      <img class="frame" src="assets/char/bass-4.webp" alt="" width="511" height="593">
+      <img class="frame" src="assets/char/bass-5.webp" alt="" width="511" height="593">
+      <img class="frame" src="assets/char/bass-6.webp" alt="" width="511" height="593">
+    </div>
+    <video class="hero-video" src="assets/video/hero-play.mp4" preload="none" playsinline></video>
+    <span class="tap-hint">tap me</span>
+    <div class="pose pose--present" data-pose="present">
+      <img src="assets/char/pose-present.webp" alt="" loading="lazy" decoding="async">
+    </div>
+    <div class="pose pose--point" data-pose="point">
+      <img src="assets/char/pose-point.webp" alt="" loading="lazy" decoding="async">
+    </div>
+  </div>
+</div>
+
+<!-- ───── Top bar ───── -->
+<header class="topbar">
+  <a class="logo" href="#top" aria-label="Back to top">PUTTER<span>.</span></a>
+  <nav class="topnav" aria-label="Chapters">
+    <a href="#work"><b>01</b> Work</a>
+    <a href="#timeline"><b>02</b> Timeline</a>
+    <a href="#stage"><b>03</b> Stage</a>
+    <a href="#dream"><b>04</b> Dream</a>
+  </nav>
+  <button class="skip-anim" id="skipAnim" type="button" aria-pressed="false">
+    <span class="skip-anim__on">Skip animation</span>
+    <span class="skip-anim__off">Turn animation on</span>
+  </button>
+</header>
+
+<main id="top">
+
+  <!-- ═════════ 00 — HERO ═════════ -->
+  <section class="chapter hero" id="hero" data-narrator="hero">
+    <div class="hero__copy">
+      <p class="eyebrow"><span class="eyebrow__num">00</span> Hello</p>
+      <h1 class="hero__title">
+        <span class="line line--big"><span>Putter</span></span>
+        <span class="line line--name"><span>Peerapat Punnapong</span></span>
+      </h1>
+      <p class="hero__lead">An IT student who loves building games, apps, and playing bass.</p>
+      <div class="hero__buttons">
+        <a class="pill" href="#stage"><span class="pill__n">01</span>Music</a>
+        <a class="pill" href="#games"><span class="pill__n">02</span>Games</a>
+        <a class="pill" href="#programs"><span class="pill__n">03</span>Programs</a>
+        <a class="pill" href="#timeline"><span class="pill__n">04</span>About me</a>
+      </div>
+      <button class="sr-play" id="playHero" type="button">Play Putter’s bass clip (with sound)</button>
+    </div>
+
+    <!-- Mobile character (desktop uses the sticky narrator) -->
+    <div class="hero__char-mobile mobile-only" id="mobileChar" aria-hidden="true">
+      <div class="pose pose--bass is-on" data-loop>
+        <img class="frame is-on" src="assets/char/bass-1.webp" alt="" width="511" height="593">
+        <img class="frame" src="assets/char/bass-2.webp" alt="" width="511" height="593" loading="lazy">
+        <img class="frame" src="assets/char/bass-3.webp" alt="" width="511" height="593" loading="lazy">
+        <img class="frame" src="assets/char/bass-4.webp" alt="" width="511" height="593" loading="lazy">
+        <img class="frame" src="assets/char/bass-5.webp" alt="" width="511" height="593" loading="lazy">
+        <img class="frame" src="assets/char/bass-6.webp" alt="" width="511" height="593" loading="lazy">
+      </div>
+      <video class="hero-video" src="assets/video/hero-play.mp4" preload="none" playsinline></video>
+      <span class="tap-hint">tap me</span>
+    </div>
+
+    <div class="hero__scroll" aria-hidden="true"><span></span>Scroll</div>
+  </section>
+
+  <!-- ═════════ 01 — WORK ═════════ -->
+  <section class="chapter work" id="work" data-narrator="center" aria-labelledby="work-h">
+    <div class="work__pin">
+      <header class="chapter__head">
+        <p class="eyebrow"><span class="eyebrow__num">01</span> Work</p>
+        <h2 class="display" id="work-h">Things<br>I make.</h2>
+      </header>
+      <div class="ghost-num" aria-hidden="true">01</div>
+
+      <img class="mobile-only work__pose" src="assets/char/pose-present.webp" alt="Putter’s character reaching out with both arms to present his work" loading="lazy">
+
+      <div class="items" role="list">
+        <button class="item item--bass" data-target="#stage" role="listitem" aria-label="Music — go to the Stage chapter">
+          <img src="assets/items/bass.webp" alt="" loading="lazy"><span class="item__label">Music</span>
+        </button>
+        <button class="item item--console" data-target="#games" role="listitem" aria-label="Games">
+          <img src="assets/items/console.webp" alt="" loading="lazy"><span class="item__label">Games</span>
+        </button>
+        <button class="item item--laptop" data-target="#programs" role="listitem" aria-label="Programs">
+          <img src="assets/items/laptop.webp" alt="" loading="lazy"><span class="item__label">Programs</span>
+        </button>
+        <button class="item item--book" data-target="#timeline" role="listitem" aria-label="About me and timeline">
+          <img src="assets/items/book.webp" alt="" loading="lazy"><span class="item__label">About me</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats + project cards -->
+  <section class="chapter worklist" data-narrator="left-present" aria-label="Projects">
+    <div class="col">
+
+      <ul class="stats" aria-label="Quick numbers">
+        <li class="stat reveal"><b class="stat__n" data-count="3">3</b><span>games built at game jams</span></li>
+        <li class="stat reveal"><b class="stat__n" data-count="2">2</b><span>hackathons in 2026</span></li>
+        <li class="stat reveal"><b class="stat__n" data-count="6">6</b><span>awards across games, hackathons, design, and music</span></li>
+        <li class="stat reveal"><b class="stat__n" data-count="50">50</b><span>restaurants surveyed in person</span></li>
+      </ul>
+
+      <!-- Programs -->
+      <div class="group" id="programs">
+        <div class="group__head reveal">
+          <span class="group__idx">01.A</span>
+          <h3 class="group__title">Programs</h3>
+        </div>
+
+        <article class="card reveal">
+          <div class="card__top">
+            <span class="card__idx">P/01</span>
+            <span class="badge badge--gold">Appreciation Award</span>
+          </div>
+          <h4 class="card__title">MUbrella</h4>
+          <p class="card__meta">Mahidol Hackathon 2026 · Team บ้านนอก In the City</p>
+          <ul class="chips" aria-label="Roles"><li>Frontend Developer</li><li>UX/UI Designer</li></ul>
+          <p class="card__desc">A smart umbrella-sharing system for campus, built around solar-powered stations. Borrow an umbrella in 30 seconds through the app: scan a QR code and the lock opens automatically. Returns are verified with RFID, and a dashboard tracks the CO₂ and waste saved. <small>(Figures are projections.)</small></p>
+
+          <div class="gc gc--dark" data-yt="mYhZVHJgxoE" data-yt-label="Watch the video" data-name="MUbrella">
+            <div class="gc__stage">
+              <button class="gc__main" type="button" aria-label="Open image full screen">
+                <img class="gc__img" src="assets/photos/award-02.webp" alt="Team บ้านนอก In the City on award day" loading="lazy" decoding="async">
+              </button>
+              <span class="gc__count" aria-hidden="true">1 / 3</span>
+            </div>
+            <div class="gc__thumbs">
+              <button class="gc__thumb is-active" type="button" data-src="assets/photos/award-02.webp" data-alt="Team บ้านนอก In the City on award day" aria-label="Show image 1 of 3" aria-current="true"><img src="assets/photos/award-02.webp" alt="" loading="lazy" decoding="async"></button>
+              <button class="gc__thumb" type="button" data-src="assets/photos/award-01.webp" data-alt="Appreciation Award board from Mahidol Hackathon 2026" aria-label="Show image 2 of 3"><img src="assets/photos/award-01.webp" alt="" loading="lazy" decoding="async"></button>
+              <button class="gc__thumb" type="button" data-src="assets/photos/award-03.webp" data-alt="MUbrella umbrella station prototype" aria-label="Show image 3 of 3"><img src="assets/photos/award-03.webp" alt="" loading="lazy" decoding="async"></button>
+            </div>
+          </div>
+
+          <div class="links">
+            <a class="link" href="https://github.com/PutterZORDOR/hackathons" target="_blank" rel="noopener">GitHub ↗</a>
+            <a class="link" href="https://www.figma.com/design/HG0lGjoe369GHmZpGtxugu/UX-UI-design-MUbrella" target="_blank" rel="noopener">Figma ↗</a>
+            <a class="link" href="https://www.youtube.com/watch?v=mYhZVHJgxoE" target="_blank" rel="noopener">YouTube ↗</a>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card__top">
+            <span class="card__idx">P/02</span>
+            <span class="badge">Grabspark 2026</span>
+          </div>
+          <h4 class="card__title">Grab Turtle <span class="card__alt">(TAO)</span></h4>
+          <p class="card__meta">Grabspark 2026 · Team Four Turtle</p>
+          <ul class="chips" aria-label="Roles"><li>Project Manager</li><li>UX/UI Designer</li><li>Prototype via vibe coding</li></ul>
+          <div class="card__split">
+            <p class="card__desc">An AI profit assistant for small restaurants that sell both in-store and on GrabFood. Scan a receipt or log income and expenses, and it turns the break-even point into one simple daily goal: “how many boxes do I need to sell today?” A wise master turtle explains it all in plain Thai. Designed from a survey of 50 real restaurants.</p>
+            <div class="bignum"><b>50</b><span>restaurants surveyed</span></div>
+          </div>
+          <div class="gc gc--light" data-name="Grab Turtle">
+            <div class="gc__stage">
+              <button class="gc__main" type="button" aria-label="Open image full screen">
+                <img class="gc__img" src="assets/projects/grab-turtle/cover.webp" alt="Grab Turtle cover: the TAO app on a phone, by team Four Turtle" loading="lazy" decoding="async">
+              </button>
+              <span class="gc__count" aria-hidden="true">1 / 4</span>
+            </div>
+            <div class="gc__thumbs">
+              <button class="gc__thumb is-active" type="button" data-src="assets/projects/grab-turtle/cover.webp" data-alt="Grab Turtle cover: the TAO app on a phone, by team Four Turtle" aria-label="Show image 1 of 4" aria-current="true"><img src="assets/projects/grab-turtle/cover-sm.webp" alt="" loading="lazy" decoding="async"></button>
+              <button class="gc__thumb" type="button" data-src="assets/projects/grab-turtle/problem.webp" data-alt="Knowing sales is not the same as knowing profit: sales vs. costs at a noodle cart" aria-label="Show image 2 of 4"><img src="assets/projects/grab-turtle/problem-sm.webp" alt="" loading="lazy" decoding="async"></button>
+              <button class="gc__thumb" type="button" data-src="assets/projects/grab-turtle/research.webp" data-alt="Merchant research with 50 restaurants: 98% find it hard to calculate cost per dish" aria-label="Show image 3 of 4"><img src="assets/projects/grab-turtle/research-sm.webp" alt="" loading="lazy" decoding="async"></button>
+              <button class="gc__thumb" type="button" data-src="assets/projects/grab-turtle/screens.webp" data-alt="Meet TAO: five-screen walkthrough of the prototype" aria-label="Show image 4 of 4"><img src="assets/projects/grab-turtle/screens-sm.webp" alt="" loading="lazy" decoding="async"></button>
+            </div>
+          </div>
+
+          <div class="links">
+            <a class="link link--solid" href="https://grab-turtle-mobile-prototype.vercel.app/" target="_blank" rel="noopener">Try the prototype ↗</a>
+          </div>
+        </article>
+      </div>
+
+      <!-- Games -->
+      <div class="group" id="games">
+        <div class="group__head reveal">
+          <span class="group__idx">01.B</span>
+          <h3 class="group__title">Games</h3>
+        </div>
+
+        <article class="card reveal">
+          <div class="card__top">
+            <span class="card__idx">G/01</span>
+            <span class="badge badge--gold">2nd Runner-up</span>
+            <span class="badge badge--gold">Best Editor</span>
+          </div>
+          <div class="card__split">
+            <div>
+              <h4 class="card__title">Siam ’N Serpent</h4>
+              <p class="card__meta">Hamster Hub Game Jam 4</p>
+              <ul class="chips" aria-label="Roles"><li>3D cutscenes</li><li>Menu system</li></ul>
+              <p class="card__desc">A pixel-art action-adventure where every fight is rock-paper-scissors, set in and around a traditional Thai house.</p>
+            </div>
+            <div class="bignum"><b>5</b><span>days</span></div>
+          </div>
+          <div class="gc gc--dark" data-yt="HDa7RsNpTlw" data-yt-label="Watch the trailer" data-name="Siam ’N Serpent">
+            <div class="gc__stage">
+              <button class="gc__main" type="button" aria-label="Open image full screen">
+                <img class="gc__img" src="assets/projects/siam-n-serpent/serpent-boss.webp" alt="Siam ’N Serpent: facing the giant serpent boss" loading="lazy" decoding="async">
+              </button>
+              <span class="gc__count" aria-hidden="true">1 / 4</span>
+            </div>
+            <div class="gc__thumbs">
+              <button class="gc__thumb is-active" type="button" data-src="assets/projects/siam-n-serpent/serpent-boss.webp" data-alt="Siam ’N Serpent: facing the giant serpent boss" aria-label="Show image 1 of 4" aria-current="true"><img src="assets/projects/siam-n-serpent/serpent-boss-sm.webp" alt="" loading="lazy" decoding="async"></button>
+              <button class="gc__thumb" type="button" data-src="assets/projects/siam-n-serpent/menu.webp" data-alt="Siam ’N Serpent title screen" aria-label="Show image 2 of 4"><img src="assets/projects/siam-n-serpent/menu-sm.webp" alt="" loading="lazy" decoding="async"></button>
+              <button class="gc__thumb" type="button" data-src="assets/projects/siam-n-serpent/gameplay.webp" data-alt="Rock-paper-scissors fight in a night forest" aria-label="Show image 3 of 4"><img src="assets/projects/siam-n-serpent/gameplay-sm.webp" alt="" loading="lazy" decoding="async"></button>
+              <button class="gc__thumb" type="button" data-src="assets/projects/siam-n-serpent/temple.webp" data-alt="A haunted temple hall lit by green candles" aria-label="Show image 4 of 4"><img src="assets/projects/siam-n-serpent/temple-sm.webp" alt="" loading="lazy" decoding="async"></button>
+            </div>
+          </div>
+
+          <div class="links"><a class="link link--solid" href="https://sarawut05.itch.io/siam-n-serpent" target="_blank" rel="noopener">Play on itch.io ↗</a></div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card__top">
+            <span class="card__idx">G/02</span>
+            <span class="badge">10th place · Bullet Hell and Idle</span>
+          </div>
+          <div class="card__split">
+            <div>
+              <h4 class="card__title">Figure Out!</h4>
+              <p class="card__meta">Hamster Hub Game Jam SP</p>
+              <ul class="chips" aria-label="Roles"><li>Level design</li><li>UX/UI</li><li>Loop &amp; menu systems</li></ul>
+              <p class="card__desc">A survival game: roll and merge weapons to level up, with a boss every 10 waves. I designed the colosseum-style pixel-art map.</p>
+            </div>
+            <div class="bignum"><b>48</b><span>hours</span></div>
+          </div>
+          <div class="gc gc--dark" data-yt="NDyYLHOLXr8" data-yt-label="Watch gameplay" data-name="Figure Out!">
+            <div class="gc__stage">
+              <button class="gc__main" type="button" aria-label="Open image full screen">
+                <img class="gc__img" src="assets/projects/figure-out/boss-fire.webp" alt="Figure Out!: the fire-headed boss on wave 10" loading="lazy" decoding="async">
+              </button>
+              <span class="gc__count" aria-hidden="true">1 / 4</span>
+            </div>
+            <div class="gc__thumbs">
+              <button class="gc__thumb is-active" type="button" data-src="assets/projects/figure-out/boss-fire.webp" data-alt="Figure Out!: the fire-headed boss on wave 10" aria-label="Show image 1 of 4" aria-current="true"><img src="assets/projects/figure-out/boss-fire-sm.webp" alt="" loading="lazy" decoding="async"></button>
+              <button class="gc__thumb" type="button" data-src="assets/projects/figure-out/gameplay.webp" data-alt="Surviving a swarm on wave 9 in the colosseum map" aria-label="Show image 2 of 4"><img src="assets/projects/figure-out/gameplay-sm.webp" alt="" loading="lazy" decoding="async"></button>
+              <button class="gc__thumb" type="button" data-src="assets/projects/figure-out/boss-white.webp" data-alt="The white-robed boss with orbiting weapons" aria-label="Show image 3 of 4"><img src="assets/projects/figure-out/boss-white-sm.webp" alt="" loading="lazy" decoding="async"></button>
+              <button class="gc__thumb" type="button" data-src="assets/projects/figure-out/inventory.webp" data-alt="Weapon chests and inventory screen" aria-label="Show image 4 of 4"><img src="assets/projects/figure-out/inventory-sm.webp" alt="" loading="lazy" decoding="async"></button>
+            </div>
+          </div>
+
+          <div class="links"><a class="link link--solid" href="https://putterzordor.itch.io/figure-out" target="_blank" rel="noopener">Play on itch.io ↗</a></div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card__top">
+            <span class="card__idx">G/03</span>
+            <span class="badge">First game</span>
+          </div>
+          <div class="card__split">
+            <div>
+              <h4 class="card__title">Hallo</h4>
+              <p class="card__meta">Hamster Hub 3D Monster Project</p>
+              <ul class="chips" aria-label="Roles"><li>Solo design &amp; code in Unity</li></ul>
+              <p class="card__desc">A 3D horror game: find the keys and the books to escape a haunted mansion.</p>
+            </div>
+            <div class="bignum"><b>7</b><span>days</span></div>
+          </div>
+          <div class="gc gc--dark" data-yt="U6ud81tNUKc" data-yt-label="Watch gameplay" data-name="Hallo">
+            <div class="gc__stage">
+              <button class="gc__main" type="button" aria-label="Open image full screen">
+                <img class="gc__img" src="assets/projects/hallo/hallway.webp" alt="Hallo: a dark hallway in the haunted mansion" loading="lazy" decoding="async">
+              </button>
+              <span class="gc__count" aria-hidden="true">1 / 3</span>
+            </div>
+            <div class="gc__thumbs">
+              <button class="gc__thumb is-active" type="button" data-src="assets/projects/hallo/hallway.webp" data-alt="Hallo: a dark hallway in the haunted mansion" aria-label="Show image 1 of 3" aria-current="true"><img src="assets/projects/hallo/hallway-sm.webp" alt="" loading="lazy" decoding="async"></button>
+              <button class="gc__thumb" type="button" data-src="assets/projects/hallo/ghost.webp" data-alt="The glowing ghost appears down the hall" aria-label="Show image 2 of 3"><img src="assets/projects/hallo/ghost-sm.webp" alt="" loading="lazy" decoding="async"></button>
+              <button class="gc__thumb" type="button" data-src="assets/projects/hallo/pumpkin.webp" data-alt="A pumpkin candy basket next to the ghost" aria-label="Show image 3 of 3"><img src="assets/projects/hallo/pumpkin-sm.webp" alt="" loading="lazy" decoding="async"></button>
+            </div>
+          </div>
+
+          <div class="links"><a class="link link--solid" href="https://putterzordor.itch.io/hallo" target="_blank" rel="noopener">Play on itch.io ↗</a></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════ 02 — TIMELINE ═════════ -->
+  <section class="chapter timeline" id="timeline" data-narrator="left-point" aria-labelledby="tl-h">
+    <div class="col">
+      <header class="chapter__head">
+        <p class="eyebrow"><span class="eyebrow__num">02</span> Timeline</p>
+        <h2 class="display" id="tl-h">How I<br>got here.</h2>
+      </header>
+
+      <img class="mobile-only tl__pose" src="assets/char/pose-point.webp" alt="Putter’s character pointing at the timeline" loading="lazy">
+
+      <ol class="tl" id="tlList">
+        <li class="tl__item reveal"><span class="tl__when">Middle school</span><p>Got hooked on computers at St. Dominic School.</p></li>
+        <li class="tl__item reveal"><span class="tl__when">Grade 10</span><p>Joined the Arts–IT program, served on the student council, and played drums in Pony Cup.</p></li>
+        <li class="tl__item reveal"><span class="tl__when">Hamster Hub</span><p>Made my first game, <b>Hallo</b>.</p></li>
+        <li class="tl__item reveal"><span class="tl__when">Game Jam 4</span><p><b>Siam ’N Serpent</b>: 2nd runner-up + Best Editor.</p></li>
+        <li class="tl__item reveal"><span class="tl__when">Game Jam SP</span><p><b>Figure Out!</b>: 10th place.</p></li>
+        <li class="tl__item reveal"><span class="tl__when">Design awards</span><p>1st place in computer greeting-card design, and an honorable mention in digital painting.</p></li>
+        <li class="tl__item reveal"><span class="tl__when">Grade 12</span><p>Bassist in Pony Junior.</p></li>
+        <li class="tl__item reveal"><span class="tl__when">2025</span><p>Started at the Faculty of Information Technology, KMITL.</p></li>
+        <li class="tl__item tl__item--now reveal"><span class="tl__when">2026</span><p>Mahidol Hackathon: <b>MUbrella</b> (Appreciation Award), and Grabspark: <b>Grab Turtle</b>.</p></li>
+      </ol>
+
+      <div class="school reveal" aria-label="High school photos">
+        <img src="assets/photos/school-02.webp" alt="Putter with a friend in school uniform" loading="lazy">
+        <img src="assets/photos/school-04.webp" alt="Selfie with high school friends" loading="lazy">
+        <img src="assets/photos/school-03.webp" alt="Taking a break at school" loading="lazy">
+        <img src="assets/photos/school-05.webp" alt="Putter at school" loading="lazy">
+      </div>
+
+      <div class="skills reveal">
+        <p class="eyebrow">Skills</p>
+        <ul class="skills__list">
+          <li>HTML</li><li>CSS</li><li>JavaScript</li><li>TypeScript</li><li>Python</li><li>Java</li><li>Unity</li><li>Figma</li><li>Aseprite</li><li>Video editing</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════ 03 — STAGE ═════════ -->
+  <section class="chapter scene stage" id="stage" data-narrator="off" aria-labelledby="stage-h">
+    <div class="scene__pin">
+      <div class="scene__media">
+        <img class="scene__img" src="assets/scenes/scene-concert.webp"
+             srcset="assets/scenes/scene-concert-sm.webp 900w, assets/scenes/scene-concert.webp 1672w"
+             sizes="100vw" alt="Putter’s character playing bass on stage under purple lights" loading="lazy">
+        <div class="scene__scrim"></div>
+      </div>
+      <div class="scene__copy">
+        <p class="eyebrow"><span class="eyebrow__num">03</span> Stage</p>
+        <h2 class="display" id="stage-h">Low end,<br>big heart.</h2>
+        <ul class="gigs">
+          <li class="reveal"><b>Drums</b> Pony Cup / Force Band <span>Grades 10–11</span><p>Played at school and at outside venues, including Siam Square.</p></li>
+          <li class="reveal"><b>Bass</b> Pony Junior <span>Grade 12</span><p>Played outside gigs and alumni association events.</p></li>
+          <li class="reveal"><b>Drums</b> Red team, sports day <span>Grades 11–12</span><p>Our cheer squad finished 1st runner-up.</p></li>
+          <li class="reveal"><b>1st place</b> Royal composition cover video<p>I handled the video editing.</p></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="gallery">
+      <div class="gallery__head">
+        <p class="eyebrow">Gallery — Live</p>
+        <div class="gallery__nav">
+          <button type="button" class="gbtn" data-dir="-1" aria-label="Previous photos">←</button>
+          <button type="button" class="gbtn" data-dir="1" aria-label="Next photos">→</button>
+        </div>
+      </div>
+      <div class="gallery__track" id="galleryTrack" tabindex="0" aria-label="Live performance photos, scroll sideways">
+        <figure><img src="assets/photos/stage-01.webp" alt="PONYCUP light sign on stage" loading="lazy"></figure>
+        <figure><img src="assets/photos/stage-02.webp" alt="Pony Cup performing under blue stage lights" loading="lazy"></figure>
+        <figure class="tall"><img src="assets/photos/stage-03.webp" alt="Putter playing bass on stage" loading="lazy"></figure>
+        <figure class="tall"><img src="assets/photos/stage-04.webp" alt="Performing on a wooden stage" loading="lazy"></figure>
+        <figure><img src="assets/photos/stage-05.webp" alt="Band members playing together" loading="lazy"></figure>
+        <figure class="tall"><img src="assets/photos/stage-06.webp" alt="Playing bass under red lights" loading="lazy"></figure>
+        <figure><img src="assets/photos/stage-07.webp" alt="The band on an outdoor stage" loading="lazy"></figure>
+        <figure><img src="assets/photos/stage-08.webp" alt="Crowd in front of the stage" loading="lazy"></figure>
+        <figure class="tall"><img src="assets/photos/stage-10.webp" alt="Drumming at a street show in Siam" loading="lazy"></figure>
+        <figure><img src="assets/photos/stage-11.webp" alt="School band playing on the street" loading="lazy"></figure>
+        <figure><img src="assets/photos/stage-09.webp" alt="Concert stage in a hall" loading="lazy"></figure>
+        <figure class="tall"><img src="assets/photos/studio-01.webp" alt="Studio portrait of Putter holding a bass" loading="lazy"></figure>
+        <figure class="tall"><img src="assets/photos/studio-02.webp" alt="Studio portrait of Putter seated with a bass" loading="lazy"></figure>
+        <figure class="tall"><img src="assets/photos/stage-12.webp" alt="Rehearsing with bandmates" loading="lazy"></figure>
+        <figure><img src="assets/photos/stage-13.webp" alt="The band on a dark stage" loading="lazy"></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════ 04 — DREAM ═════════ -->
+  <section class="chapter scene dream" id="dream" data-narrator="off" aria-labelledby="dream-h">
+    <div class="scene__pin">
+      <div class="scene__media">
+        <img class="scene__img" src="assets/scenes/scene-dream.webp"
+             srcset="assets/scenes/scene-dream-sm.webp 900w, assets/scenes/scene-dream.webp 1672w"
+             sizes="100vw" alt="Putter’s character sitting on a grassy hill looking up at the night sky" loading="lazy">
+        <canvas class="stars" id="stars" aria-hidden="true"></canvas>
+        <div class="scene__scrim"></div>
+      </div>
+      <div class="scene__copy">
+        <p class="eyebrow"><span class="eyebrow__num">04</span> Dream</p>
+        <h2 class="dream__title" id="dream-h">I want to build an AI that all of Thailand can use.</h2>
+        <p class="dream__text">My dream is to build my own company, and one day, an AI that every Thai person can use. Until then, I keep learning everything I can about IT.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ═════════ FOOTER ═════════ -->
+<footer class="footer" data-narrator="off">
+  <p class="eyebrow">Contact</p>
+  <h2 class="display footer__title">Let’s build<br>something.</h2>
+  <ul class="footer__links">
+    <li><a href="https://github.com/PutterZORDOR" target="_blank" rel="noopener"><span>GitHub</span><em>PutterZORDOR ↗</em></a></li>
+    <li><a href="https://putterzordor.itch.io" target="_blank" rel="noopener"><span>itch.io</span><em>putterzordor ↗</em></a></li>
+    <li data-contact="email" hidden><a href="#"><span>Email</span><em></em></a></li>
+    <li data-contact="instagram" hidden><a href="#" target="_blank" rel="noopener"><span>Instagram</span><em></em></a></li>
+  </ul>
+  <p class="footer__small">© 2026 Peerapat Punnapong · Built with HTML, CSS, JavaScript, and GSAP</p>
+</footer>
+
+<!-- Image lightbox for project galleries -->
+<dialog class="lightbox" id="lightbox" aria-label="Image viewer">
+  <figure class="lightbox__fig">
+    <img alt="">
+    <figcaption class="lightbox__cap"></figcaption>
+  </figure>
+  <button class="lightbox__nav lightbox__nav--prev" type="button" aria-label="Previous image">←</button>
+  <button class="lightbox__nav lightbox__nav--next" type="button" aria-label="Next image">→</button>
+  <button class="lightbox__close" type="button" aria-label="Close (Esc)">×</button>
+</dialog>
+
+<!-- Zoom overlay used when an item is clicked -->
+<div class="zoom" id="zoom" aria-hidden="true"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="js/stars.js" defer></script>
+<script src="js/main.js" defer></script>
+</body>
+</html>
