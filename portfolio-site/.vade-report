@@ -1,0 +1,53 @@
+# Vercel Web Analytics Implementation
+
+## Summary
+Successfully installed and configured Vercel Web Analytics for this static HTML portfolio website.
+
+## Changes Made
+
+### Modified Files
+- **index.html** - Added Vercel Web Analytics script tag in the `<head>` section
+
+### Implementation Details
+
+According to the latest Vercel documentation (fetched from https://vercel.com/docs/analytics/quickstart and https://vercel.com/docs/analytics/package), I implemented Web Analytics using the recommended approach for static HTML sites:
+
+1. **Added the CDN-hosted analytics script** just before the closing `</head>` tag:
+   ```html
+   <!-- Vercel Web Analytics -->
+   <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
+   ```
+
+2. **Script attributes**:
+   - Used `defer` attribute for optimal performance (non-blocking script loading)
+   - Script loads from Vercel's CDN at `https://cdn.vercel-insights.com/v1/script.js`
+
+3. **No package installation required**: For static HTML sites, Vercel Analytics works via the CDN-hosted script tag without requiring the `@vercel/analytics` npm package.
+
+## Why This Approach
+
+- **Static HTML site**: This project is a pure HTML/CSS/JS portfolio site without a build process or framework
+- **CDN-hosted script**: The official Vercel documentation recommends using the CDN-hosted script for non-framework sites
+- **Non-invasive**: The script uses the `defer` attribute to avoid blocking page rendering
+- **No dependencies**: No npm packages or build configuration needed
+
+## How It Works
+
+Once deployed to Vercel:
+1. The analytics script will automatically track page views and visitor interactions
+2. Data will be collected at `/_vercel/insights/*` endpoints
+3. Analytics dashboard will show data after deployment (may take a few days for initial data to appear)
+
+## Next Steps
+
+After this PR is merged and deployed to Vercel:
+1. Web Analytics will automatically begin collecting data
+2. View analytics in the Vercel dashboard under the project's Analytics section
+3. Visitor data and page views will appear within a few days
+
+## Notes
+
+- The implementation follows Vercel's official quickstart guide for static HTML sites
+- The script is loaded with the `defer` attribute to ensure optimal page load performance
+- No changes to CSS, JavaScript, or other assets were necessary
+- The existing code structure and functionality remain unchanged
